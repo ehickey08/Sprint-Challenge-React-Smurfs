@@ -23,21 +23,20 @@ class SmurfForm extends Component {
   }
 
 componentDidMount() {
+    if(this.props.activeSmurf){
     const{name, age, height} = this.props.activeSmurf;
-    if(this.props.activeSmurf.id>-1)
         this.setState({
             smurf:{
                 name, age, height
             }
         })
+    }
 }
 
 addOrUpdate = (e) => {
     e.preventDefault();
-    if(this.props.activeSmurf.id>-1)
-        this.props.updateSmurf(this.state.smurf, this.props.activeSmurf.id)
-    else
-        this.props.addSmurf(this.state.smurf)
+    const id = this.props.activeSmurf ? this.props.activeSmurf.id : '';
+    this.props.action(this.state.smurf, id)
     this.setState({
         smurf:{
             name: '',
@@ -48,7 +47,7 @@ addOrUpdate = (e) => {
 }
 
   render() {
-     const buttonName = this.props.activeSmurf.id>-1 ? `Update ${this.state.smurf.name}'s Information` : `Add to the village`;
+     const buttonName = this.props.activeSmurf ? `Update ${this.state.smurf.name}'s Information` : `Add to the village`;
     return (
       <div className="SmurfForm">
         <Form onSubmit={(e) => this.addOrUpdate(e)}>

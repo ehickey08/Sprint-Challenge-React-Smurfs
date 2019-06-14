@@ -2,32 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {Route, NavLink, withRouter} from 'react-router-dom';
 
-import {Menu} from 'antd' 
-
 import './App.css';
+
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
-import MenuItem from 'antd/lib/menu/MenuItem';
-
-
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       smurfs: [],
-      activeSmurf : {
-        name: '',
-        age: '',
-        height: '',
-        id: -1
-      },
-      nullSmurf: {
-        name: '',
-        age: '',
-        height: '',
-        id: -1
-      }
     };
   }
  
@@ -56,11 +40,9 @@ deleteSmurf = (id) => {
     .catch(err => console.log(err))
 }
 
-updateForm = (name, age, height, id) => {
+updateForm = (smurf) => {
     this.setState({
-        activeSmurf:{
-            name, age, height, id
-        }
+        activeSmurf: smurf
     })
     this.props.history.push("/smurf-update-form")
 }
@@ -72,11 +54,6 @@ updateSmurf = (smurf, id) => {
     })
     .catch(err => console.log(err))
     this.props.history.push("/")
-    this.setState({
-        activeSmurf:{
-            id: ''
-        }
-    })
 }
 
   render() {
@@ -97,20 +74,14 @@ updateSmurf = (smurf, id) => {
           <Route path ="/smurf-form" render ={(props) => 
             <SmurfForm 
                 {...props} 
-                addSmurf = {this.addSmurf} 
-                updateSmurf = {this.updateSmurf}
-                activeSmurf = {this.state.nullSmurf}
-                smurfs = {this.state.smurfs}
-                
-                />
+                action = {this.addSmurf} 
+            />
             } />
             <Route path ="/smurf-update-form" render ={(props) => 
             <SmurfForm 
                 {...props} 
-                addSmurf = {this.addSmurf} 
-                updateSmurf = {this.updateSmurf}
+                action = {this.updateSmurf}
                 activeSmurf = {this.state.activeSmurf}
-                smurfs = {this.state.smurfs}
                 />
             } />
             {this.state.smurfs.map(smurf => {
