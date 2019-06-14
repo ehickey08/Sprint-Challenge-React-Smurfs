@@ -6,8 +6,8 @@ import {Card, Button, Menu, Dropdown, Icon} from 'antd';
 const Smurf = props => {
     const menu = (
         <Menu>
-            <Menu.Item key="1" onClick ={() => props.deleteSmurf(props.id)}>Delete</Menu.Item>
-            <Menu.Item key="2" onClick = {() => props.updateForm(props.name, props.age, props.height, props.id)}>Edit</Menu.Item>
+            <Menu.Item key="1" onClick ={(evt) => { props.deleteSmurf(props.id)}}>Delete</Menu.Item>
+            <Menu.Item key="2" onClick = {(evt) => props.updateForm(props.name, props.age, props.height, props.id)}>Edit</Menu.Item>
         </Menu>
     )
   return (

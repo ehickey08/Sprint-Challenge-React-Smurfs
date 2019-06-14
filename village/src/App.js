@@ -95,7 +95,6 @@ updateSmurf = (smurf, id) => {
                 smurfs={this.state.smurfs} 
                 deleteSmurf = {this.deleteSmurf} 
                 updateForm = {this.updateForm}
-                id = {this.state.nullSmurf.id}
                 />
             } />
           <Route path ="/smurf-form" render ={(props) => 
@@ -118,13 +117,12 @@ updateSmurf = (smurf, id) => {
                 />
             } />
             {this.state.smurfs.map(smurf => {
-                return <Route path ={`/smurfs/${smurf.id}`} render={(props) =>
+                return <Route key = {smurf.id} path ={`/smurfs/${smurf.id}`} render={(props) =>
                 <Smurfs
                     {...props}
-                    smurfs ={this.state.smurfs}
+                    smurfs ={[smurf]}
                     deleteSmurf = {this.deleteSmurf}
                     updateForm = {this.updateForm}
-                    id ={smurf.id}
                 />
                 } />
             })}
