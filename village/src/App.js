@@ -7,6 +7,7 @@ import {Menu} from 'antd'
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
+import MenuItem from 'antd/lib/menu/MenuItem';
 
 
 
@@ -81,14 +82,10 @@ updateSmurf = (smurf, id) => {
   render() {
     return (
       <div className="App">
-          <Menu mode="horizontal">
-              <Menu.Item>
-                <NavLink exact to="/" activeClassName="selected">Home</NavLink>
-              </Menu.Item>
-              <Menu.Item>
-                <NavLink exact to="/smurf-form" activeClassName="selected">Add a Smurf</NavLink>
-              </Menu.Item>
-          </ Menu>
+          <div className ="nav">
+            <NavLink exact to="/" activeClassName="selected-menu">Home</NavLink>
+            <NavLink exact to="/smurf-form" activeClassName="selected-menu">Add a Smurf</NavLink>
+          </div>
           <Route exact path ="/" render={(props) => 
             <Smurfs 
                 {...props} 
