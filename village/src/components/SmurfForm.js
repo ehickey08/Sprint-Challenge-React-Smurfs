@@ -24,11 +24,8 @@ class SmurfForm extends Component {
 
 componentDidMount() {
     if(this.props.activeSmurf){
-    const{name, age, height} = this.props.activeSmurf;
         this.setState({
-            smurf:{
-                name, age, height
-            }
+            smurf:this.props.activeSmurf
         })
     }
 }
