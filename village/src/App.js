@@ -95,6 +95,7 @@ updateSmurf = (smurf, id) => {
                 smurfs={this.state.smurfs} 
                 deleteSmurf = {this.deleteSmurf} 
                 updateForm = {this.updateForm}
+                id = {this.state.nullSmurf.id}
                 />
             } />
           <Route path ="/smurf-form" render ={(props) => 
@@ -104,6 +105,7 @@ updateSmurf = (smurf, id) => {
                 updateSmurf = {this.updateSmurf}
                 activeSmurf = {this.state.nullSmurf}
                 smurfs = {this.state.smurfs}
+                
                 />
             } />
             <Route path ="/smurf-update-form" render ={(props) => 
@@ -115,6 +117,17 @@ updateSmurf = (smurf, id) => {
                 smurfs = {this.state.smurfs}
                 />
             } />
+            {this.state.smurfs.map(smurf => {
+                return <Route path ={`/smurfs/${smurf.id}`} render={(props) =>
+                <Smurfs
+                    {...props}
+                    smurfs ={this.state.smurfs}
+                    deleteSmurf = {this.deleteSmurf}
+                    updateForm = {this.updateForm}
+                    id ={smurf.id}
+                />
+                } />
+            })}
       </div>
     );
   }

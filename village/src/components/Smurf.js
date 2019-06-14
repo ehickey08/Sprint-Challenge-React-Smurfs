@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Card, Button, Menu, Dropdown, Icon} from 'antd';
 
 
@@ -11,6 +12,7 @@ const Smurf = props => {
     )
   return (
     <div className="Smurf">
+        <Link to={`/smurfs/${props.id}`}>
         <Card title = {props.name} style={{width: 200, margin: `40px auto`, boxShadow:`0 0 10px rgba(0, 0, 0, 0.5)`}}>
             <p>{props.age} smurf years old</p>
             <p><strong>{props.height} tall</strong></p>
@@ -20,6 +22,7 @@ const Smurf = props => {
                 </Button>
             </Dropdown>
       </ Card>
+      </Link>
     </div>
   );
 };
