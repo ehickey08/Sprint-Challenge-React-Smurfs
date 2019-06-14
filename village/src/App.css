@@ -13,6 +13,11 @@
 }
 
 .SmurfForm{
-    margin: 25px auto;
+    margin: 25px auto 0px;
     width: 300px;
+}
+
+.Smurf{
+    width: fit-content;
+    margin: 0 auto;
 }

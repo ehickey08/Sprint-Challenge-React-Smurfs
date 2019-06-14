@@ -12,17 +12,17 @@ const Smurf = props => {
     )
   return (
     <div className="Smurf">
-        <Link to={`/smurfs/${props.id}`}>
-        <Card title = {props.name} style={{width: 200, margin: `40px auto`, boxShadow:`0 0 10px rgba(0, 0, 0, 0.5)`}}>
-            <p>{props.age} smurf years old</p>
-            <p><strong>{props.height} tall</strong></p>
-            <Dropdown overlay={menu}>
-                <Button>
-                    Update <Icon type="down" />
-                </Button>
-            </Dropdown>
-      </ Card>
-      </Link>
+        <Link className = "card-link" to={`/smurfs/${props.id}`}>
+            <Card title = {props.name} style={{width: 200, margin: `40px auto 5px`, boxShadow:`0 0 10px rgba(0, 0, 0, 0.5)`}}>
+                <p>{props.age} smurf years old</p>
+                <p><strong>{props.height} tall</strong></p>
+            </ Card>
+        </Link>
+        <Dropdown overlay={menu}>
+            <Button>
+                Update <Icon type="down" />
+            </Button>
+        </Dropdown>
     </div>
   );
 };
