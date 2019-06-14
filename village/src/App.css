@@ -1,3 +1,18 @@
 .App {
   text-align: center;
+  width: 1000px;
+  margin: 1rem auto;
+}
+
+.Smurfs h1{
+    text-align: center;
+}
+
+.Smurfs ul{
+   padding: 0;
+}
+
+.SmurfForm{
+    margin: 25px auto;
+    width: 300px;
 }
