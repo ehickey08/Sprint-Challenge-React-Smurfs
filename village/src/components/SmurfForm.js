@@ -1,54 +1,79 @@
 import React, { Component } from 'react';
+import {Form, Input, Button} from 'antd';
 
 class SmurfForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      age: '',
-      height: ''
+        smurf: {
+            name: '',
+            age: '',
+            height: ''
+        }
     };
   }
 
-  addSmurf = event => {
-    event.preventDefault();
-    // add code to create the smurf using the api
-
-    this.setState({
-      name: '',
-      age: '',
-      height: ''
+  handleInputChange = e => {
+    this.setState({ 
+        smurf: {
+            ...this.state.smurf,
+            [e.target.name]: e.target.value 
+        }
     });
   }
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+componentDidMount() {
+    if(this.props.activeSmurf){
+        this.setState({
+            smurf:this.props.activeSmurf
+        })
+    }
+}
+
+addOrUpdate = (e) => {
+    e.preventDefault();
+    const id = this.props.activeSmurf ? this.props.activeSmurf.id : '';
+    this.props.action(this.state.smurf, id)
+    this.setState({
+        smurf:{
+            name: '',
+            age: '',
+            height: ''
+        }
+    })
+}
 
   render() {
+     const buttonName = this.props.activeSmurf ? `Update ${this.state.smurf.name}'s Information` : `Add to the village`;
     return (
       <div className="SmurfForm">
-        <form onSubmit={this.addSmurf}>
-          <input
-            onChange={this.handleInputChange}
-            placeholder="name"
-            value={this.state.name}
-            name="name"
-          />
-          <input
-            onChange={this.handleInputChange}
-            placeholder="age"
-            value={this.state.age}
-            name="age"
-          />
-          <input
-            onChange={this.handleInputChange}
-            placeholder="height"
-            value={this.state.height}
-            name="height"
-          />
-          <button type="submit">Add to the village</button>
-        </form>
+        <Form onSubmit={(e) => this.addOrUpdate(e)}>
+            <Form.Item label="Name">
+                <Input
+                    onChange={this.handleInputChange}
+                    placeholder="name"
+                    value={this.state.smurf.name}
+                    name="name"
+                />
+            </Form.Item>
+            <Form.Item label="Age">
+                <Input
+                    onChange={this.handleInputChange}
+                    placeholder="age"
+                    value={this.state.smurf.age}
+                    name="age"
+                />
+            </Form.Item>
+            <Form.Item label="Height">
+                <Input
+                    onChange={this.handleInputChange}
+                    placeholder="height"
+                    value={this.state.smurf.height}
+                    name="height"
+                />
+            </Form.Item>
+            <Button type="primary" htmlType ="submit">{buttonName}</Button>
+        </Form>
       </div>
     );
   }
